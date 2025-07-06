@@ -1,97 +1,259 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# WingsFly React Native App
 
-# Getting Started
+A beautiful task management app recreated from the provided UI design using React Native CLI with TypeScript.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## 🚀 Features
 
-## Step 1: Start Metro
+- ✅ Horizontal date picker with smooth selection
+- ✅ Today's quote section with animated progress bar
+- ✅ Task list with custom icons, tags, and status indicators
+- ✅ Floating action button with haptic feedback
+- ✅ Bottom drawer modal with slide-up animation
+- ✅ Modular component architecture
+- ✅ TypeScript support for better type safety
+- ✅ Responsive design for various screen sizes
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## 📋 Prerequisites
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+Before running this project, make sure you have the following installed:
 
-```sh
-# Using npm
-npm start
+- **Node.js** (v16 or higher)
+- **React Native CLI**
+- **Android Studio** (for Android development)
+- **Xcode** (for iOS development - Mac only)
+- **JDK 11** (for Android development)
 
-# OR using Yarn
-yarn start
+## 🛠️ Installation & Setup
+
+### 1. Clone or Create the Project
+
+```bash
+# Create new React Native project
+npx react-native init WingsFlyApp --template react-native-template-typescript
+cd WingsFlyApp
+
+# Or if you have the source code, just navigate to the project directory
+cd WingsFlyApp
 ```
 
-## Step 2: Build and run your app
+### 2. Install Dependencies
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+```bash
+npm install
+```
+
+### 3. Install Additional Libraries
+
+```bash
+npm install react-native-vector-icons react-native-reanimated react-native-gesture-handler react-native-svg react-native-linear-gradient
+```
+
+### 4. iOS Setup (Mac only)
+
+```bash
+cd ios && pod install && cd ..
+```
+
+### 5. Android Setup
+
+Add the following to `android/app/build.gradle`:
+
+```gradle
+apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
+```
+
+Add vector icons configuration:
+
+```gradle
+project.ext.vectoricons = [
+    iconFontNames: [ 'MaterialIcons.ttf', 'FontAwesome.ttf', 'Ionicons.ttf' ]
+]
+```
+
+### 6. Link Vector Icons (Android)
+
+Add to `android/app/src/main/java/.../MainApplication.java`:
+
+```java
+import com.oblador.vectoricons.VectorIconsPackage;
+
+@Override
+protected List<ReactPackage> getPackages() {
+    return Arrays.<ReactPackage>asList(
+        new MainApplication(),
+        new VectorIconsPackage()
+    );
+}
+```
+
+## 🏃‍♂️ Running the App
 
 ### Android
 
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+```bash
+npx react-native run-android
 ```
 
 ### iOS
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+```bash
+npx react-native run-ios
 ```
 
-Then, and every time you update your native dependencies, run:
+### Development Server
 
-```sh
-bundle exec pod install
+```bash
+npx react-native start
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+## 📁 Project Structure
 
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+```
+WingsFlyApp/
+├── src/
+│   ├── components/
+│   │   ├── common/
+│   │   │   ├── DatePicker.tsx          # Horizontal date picker
+│   │   │   ├── TaskItem.tsx            # Individual task component
+│   │   │   └── BottomDrawer.tsx        # Animated bottom drawer
+│   │   └── screens/
+│   │       └── HomeScreen.tsx          # Main home screen
+│   ├── constants/
+│   │   ├── colors.ts                   # Color palette
+│   │   └── data.ts                     # Mock data
+│   ├── types/
+│   │   └── index.ts                    # TypeScript definitions
+│   └── utils/
+│       └── helpers.ts                  # Utility functions
+├── App.tsx                             # Root component
+├── package.json                        # Dependencies
+└── README.md                           # This file
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## 🎯 Key Implementation Details
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+### Components
 
-## Step 3: Modify your app
+1. **DatePicker**: Horizontal scrollable date picker with selected state
+2. **TaskItem**: Reusable task component with icons, tags, and status
+3. **BottomDrawer**: Animated modal with slide-up animation and gesture handling
+4. **HomeScreen**: Main screen orchestrating all components
 
-Now that you have successfully run the app, let's make changes!
+### Animations
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+- **Bottom Drawer**: Uses `react-native-reanimated` for smooth slide-up animation
+- **Progress Bar**: Animated progress indicator for daily quotes
+- **Gesture Handling**: Pan gestures for drawer dismissal
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+### State Management
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+- Uses React hooks (`useState`, `useEffect`) for local state management
+- Modular data structure with TypeScript interfaces
+- Clean separation of concerns
 
-## Congratulations! :tada:
+## 🎨 Design System
 
-You've successfully run and modified your React Native App. :partying_face:
+### Colors
 
-### Now what?
+- Primary: #4A5FFF (Blue)
+- Secondary: #6B7FFF (Light Blue)
+- Background: #F8F9FA (Light Gray)
+- Success: #10B981 (Green)
+- Warning: #F59E0B (Orange)
+- Error: #EF4444 (Red)
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+### Typography
 
-# Troubleshooting
+- Headlines: 18-24px, Bold
+- Body: 14-16px, Regular/Medium
+- Captions: 12px, Regular
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+### Spacing
 
-# Learn More
+- Consistent 8px grid system
+- 16px margins for content
+- 12px padding for components
 
-To learn more about React Native, take a look at the following resources:
+## 🔧 Troubleshooting
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+### Common Issues
+
+1. **Vector icons not showing**
+
+   ```bash
+   # Clean and rebuild
+   npx react-native clean
+   npx react-native run-android
+   ```
+
+2. **Metro bundler issues**
+
+   ```bash
+   npx react-native start --reset-cache
+   ```
+
+3. **Pod install fails (iOS)**
+
+   ```bash
+   cd ios
+   pod deintegrate
+   pod install
+   cd ..
+   ```
+
+4. **Build errors**
+
+   ```bash
+   # Clear node modules
+   rm -rf node_modules
+   npm install
+
+   # Clear Metro cache
+   npx react-native start --reset-cache
+   ```
+
+### Android Specific
+
+- Ensure Android SDK is properly configured
+- Check `ANDROID_HOME` environment variable
+- Verify emulator is running or device is connected
+
+### iOS Specific
+
+- Ensure Xcode is installed and updated
+- Check iOS simulator is available
+- Verify development team is set in Xcode
+
+## 🚀 Performance Optimizations
+
+- **React.memo** for component memoization
+- **useCallback** for function memoization
+- **FlatList** for large lists (if needed)
+- **Native driver** for animations
+- **Lazy loading** for images
+
+## 🔮 Future Enhancements
+
+- [ ] Dark mode support
+- [ ] Haptic feedback
+- [ ] Push notifications
+- [ ] Data persistence
+- [ ] User authentication
+- [ ] Task synchronization
+- [ ] Calendar integration
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+---
+
+**Built using React Native CLI and TypeScript**
