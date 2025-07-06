@@ -13,6 +13,11 @@ A beautiful task management app recreated from the provided UI design using Reac
 - ✅ TypeScript support for better type safety
 - ✅ Responsive design for various screen sizes
 
+##Screenshots
+![Screenshot 2025-07-06 223204](https://github.com/user-attachments/assets/8093bd8a-d3fe-4b21-ac10-bea4c983146e)
+![Screenshot 2025-07-06 223327](https://github.com/user-attachments/assets/781a5dde-2002-4dcb-9bf4-a74b997af790)
+
+
 ## 📋 Prerequisites
 
 Before running this project, make sure you have the following installed:
